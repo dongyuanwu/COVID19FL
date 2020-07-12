@@ -1,7 +1,7 @@
 
 This app aims to provide a visualization of the COVID-19 at Florida. It will update new case line data from <a href="http://www.floridahealth.gov/" target="_blank">Florida DOH</a> every day.
 
-**Website:** <a href="https://dongyuanwu.shinyapps.io/COVID19FL/" target="_blank">Shiny App/</a>
+**Website:** <a href="https://dongyuanwu.shinyapps.io/COVID19FL/" target="_blank">Shiny App</a>
 
 **Developer:** <a href="https://dongyuanwu.github.io" target="_blank">Dongyuan Wu</a>
 
