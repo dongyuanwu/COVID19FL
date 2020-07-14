@@ -30,14 +30,14 @@ shinyServer(function(input, output) {
     })
     
     output$plot_new <- renderPlotly({
-        tab <- as.data.frame(table(datasetInput()$EventDate))
+        tab <- as.data.frame(table(datasetInput()$ChartDate))
         tab$Var1 <- as.Date(tab$Var1,"%Y-%m-%d")
         tab$summ <- cumsum(tab$Freq)
         plot_ly(tab, x=~Var1, y=~Freq) %>% add_lines() %>% 
             layout(xaxis=list(title=""), yaxis=list(title="Count"))
     })
     output$plot_cum <- renderPlotly({
-        tab <- as.data.frame(table(datasetInput()$EventDate))
+        tab <- as.data.frame(table(datasetInput()$ChartDate))
         tab$Var1 <- as.Date(tab$Var1,"%Y-%m-%d")
         tab$summ <- cumsum(tab$Freq)
         plot_ly(tab, x=~Var1, y=~summ) %>% add_lines() %>% 

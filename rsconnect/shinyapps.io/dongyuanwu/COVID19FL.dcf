@@ -5,9 +5,9 @@ account: dongyuanwu
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2561917
-bundleId: 3382959
+bundleId: 3392229
 url: https://dongyuanwu.shinyapps.io/COVID19FL/
-when: 1594572323.23371
+when: 1594753460.77935
 asMultiple: FALSE
 asStatic: FALSE
 ignoredFiles: .gitattributes|loaddata.R

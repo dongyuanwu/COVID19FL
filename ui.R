@@ -106,9 +106,9 @@ ui <- dashboardPage(skin = "green",
                                  "Died: Case died", br(),
                                  "Contact: Case had known contact with another COVID-19 case", br(),
                                  "EventDate: Date symptoms started, or if that date is unknown, 
-                                 date lab results were reported to the DOH
-                                 (The time series plots in Overview used this kind of date)", br(),
-                                 "ChartDate: Date used to create bar chart in the Dashboard",
+                                 date lab results were reported to the DOH", br(),
+                                 "ChartDate: Date used to create bar chart in the Dashboard
+                                 (The time series plots in Overview used this kind of date)",
                                  width=12)
                     ),
                     DT::dataTableOutput("mytable")

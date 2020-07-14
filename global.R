@@ -24,7 +24,8 @@ comp <- function(newdat, olddat) {
 }
 
 # preprocessing
-caseline <- caseline[, -c(1, 4, 6, 8, 12, 14)]
+#caseline <- caseline[, -c(1, 4, 6, 8, 12, 14)]
+caseline <- caseline[, -c(3, 5, 7, 11, 13, 16)]
 caseline$Age <- as.numeric(caseline$Age)
 caseline$EDvisit <- ifelse(is.na(caseline$EDvisit), "UNKNOWN", caseline$EDvisit)
 caseline$Hospitalized <- ifelse(caseline$Hospitalized == "NA", "UNKNOWN", caseline$Hospitalized)
@@ -34,11 +35,11 @@ caseline$Contact <- ifelse(caseline$Contact == "Yes", "YES", caseline$Contact)
 caseline$EventDate <- as.Date(caseline$EventDate,"%Y/%m/%d")
 caseline$ChartDate <- as.Date(caseline$ChartDate,"%Y/%m/%d")
 
-caseline <- caseline[order(caseline$ChartDate, decreasing=TRUE), ]
+caseline <- caseline[order(caseline[, c("ChartDate", "EventDate")], decreasing=TRUE), ]
 row.names(caseline) <- NULL
 
 # overview
-entire_tab <- as.data.frame(table(caseline$EventDate))
+entire_tab <- as.data.frame(table(caseline$ChartDate))
 entire_tab$Var1 <- as.Date(entire_tab$Var1,"%Y-%m-%d")
 entire_tab$summ <- cumsum(entire_tab$Freq)
 
