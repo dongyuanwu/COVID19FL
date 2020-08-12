@@ -11,7 +11,7 @@ caseline <- rbindlist(caseline)
 
 lastcaseline <- readRDS("caseline.rds")
 
-if (nrow(caseline) != nrow(lastcaseline)) {
+if (nrow(caseline) > nrow(lastcaseline)) {
     lastupdate <- vector(mode="list", length=2)
     lastupdate[[1]] <- Sys.Date()
     lastupdate[[2]] <- lastcaseline
