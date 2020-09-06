@@ -24,8 +24,8 @@ comp <- function(newdat, olddat) {
 }
 
 # preprocessing
-caseline <- caseline[, -c(1, 4, 6, 8, 12, 14)]
-#caseline <- caseline[, -c(3, 5, 7, 11, 13, 16)]
+#caseline <- caseline[, -c(1, 4, 6, 8, 12, 14)]
+caseline <- caseline[, -c(3, 5, 7, 11, 13, 16)]
 caseline$Age <- as.numeric(caseline$Age)
 caseline$EDvisit <- ifelse(is.na(caseline$EDvisit), "UNKNOWN", caseline$EDvisit)
 caseline$Hospitalized <- ifelse(caseline$Hospitalized == "NA", "UNKNOWN", caseline$Hospitalized)
