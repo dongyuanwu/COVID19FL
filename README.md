@@ -11,4 +11,6 @@ This app aims to provide a visualization of the COVID-19 at Florida. It will upd
 
 **Data Source:** <a href="https://open-fdoh.hub.arcgis.com/datasets/florida-covid19-case-line-data" target="_blank">Florida Department of Health Open Data</a>
 
-**Last Update:** 07/14/2020
+**Updates:** 
+- 11/10/2020: Add a default rangeslider for the time series plots to adapt to more and more time points.
+- 07/14/2020: First released.

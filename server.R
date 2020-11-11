@@ -22,11 +22,19 @@ shinyServer(function(input, output) {
     # overview
     output$entire_plot_new <- renderPlotly({
         plot_ly(entire_tab, x=~Var1, y=~Freq) %>% add_lines() %>% 
-            layout(xaxis=list(title=""), yaxis=list(title="Count"))
+            layout(xaxis=list(title="",
+                              range=c(as.numeric(max(entire_tab$Var1)-120) * 86400000,
+                                      as.numeric(max(entire_tab$Var1)) * 86400000),
+                              rangeslider=list(type="date")),
+                   yaxis=list(title="Count"))
     })
     output$entire_plot_cum <- renderPlotly({
         plot_ly(entire_tab, x=~Var1, y=~summ) %>% add_lines() %>% 
-            layout(xaxis=list(title=""), yaxis=list(title="Count"))
+            layout(xaxis=list(title="",
+                              range=c(as.numeric(max(entire_tab$Var1)-120) * 86400000,
+                                      as.numeric(max(entire_tab$Var1)) * 86400000),
+                              rangeslider=list(type="date")), 
+                   yaxis=list(title="Count"))
     })
     
     output$plot_new <- renderPlotly({
@@ -34,14 +42,22 @@ shinyServer(function(input, output) {
         tab$Var1 <- as.Date(tab$Var1,"%Y-%m-%d")
         tab$summ <- cumsum(tab$Freq)
         plot_ly(tab, x=~Var1, y=~Freq) %>% add_lines() %>% 
-            layout(xaxis=list(title=""), yaxis=list(title="Count"))
+            layout(xaxis=list(title="",
+                              range=c(as.numeric(max(tab$Var1)-120) * 86400000,
+                                      as.numeric(max(tab$Var1)) * 86400000),
+                              rangeslider=list(type="date")), 
+                   yaxis=list(title="Count"))
     })
     output$plot_cum <- renderPlotly({
         tab <- as.data.frame(table(datasetInput()$ChartDate))
         tab$Var1 <- as.Date(tab$Var1,"%Y-%m-%d")
         tab$summ <- cumsum(tab$Freq)
         plot_ly(tab, x=~Var1, y=~summ) %>% add_lines() %>% 
-            layout(xaxis=list(title=""), yaxis=list(title="Count"))
+            layout(xaxis=list(title="",
+                              range=c(as.numeric(max(tab$Var1)-120) * 86400000,
+                                      as.numeric(max(tab$Var1)) * 86400000),
+                              rangeslider=list(type="date")), 
+                   yaxis=list(title="Count"))
     })
     
     output$countycase <- renderPlotly({
