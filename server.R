@@ -117,7 +117,7 @@ shinyServer(function(input, output) {
     output$hospBox <- renderValueBox({
         valueBox(
             sum(datasetInput()$Hospitalized == "YES", na.rm=TRUE), 
-            HTML(paste0("Total Cases <br> (Compare to yesterday: ", 
+            HTML(paste0("Total Hospitalized <br> (Compare to yesterday: ", 
                         comp(sum(datasetInput()$Hospitalized == "YES", na.rm=TRUE),
                              sum(lastInput()$Hospitalized == "YES", na.rm=TRUE)), ")")), 
             icon=icon("hospital"), color="purple"
@@ -127,7 +127,7 @@ shinyServer(function(input, output) {
     output$deathBox <- renderValueBox({
         valueBox(
             sum(datasetInput()$Died == "Yes", na.rm=TRUE),
-            HTML(paste0("Total Cases <br> (Compare to yesterday: ", 
+            HTML(paste0("Total Deaths <br> (Compare to yesterday: ", 
                         comp(sum(datasetInput()$Died == "Yes", na.rm=TRUE),
                              sum(lastInput()$Died == "Yes", na.rm=TRUE)), ")")), 
             icon=icon("sad-tear"), color = "red"
