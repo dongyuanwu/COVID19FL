@@ -12,8 +12,16 @@ shinyServer(function(input, output) {
         subset(caseline, County == input$dataset)
     })
     
-    lastInput <- eventReactive(input$action1,{
-        subset(lastupdate[[2]], County == input$dataset)
+    lastInput_total <- eventReactive(input$action1,{
+        subset(lastupdate[[2]], County == input$dataset)$n
+    })
+    
+    lastInput_died <- eventReactive(input$action1,{
+        subset(lastupdate[[3]], County == input$dataset)$n
+    })
+    
+    lastInput_hosp <- eventReactive(input$action1,{
+        subset(lastupdate[[4]], County == input$dataset)$n
     })
     
     
@@ -109,7 +117,7 @@ shinyServer(function(input, output) {
         valueBox(
             nrow(datasetInput()),
             HTML(paste0("Total Cases <br> (Compare to yesterday: ", 
-                        comp(nrow(datasetInput()), nrow(lastInput())), ")")), 
+                        comp(nrow(datasetInput()), lastInput_total()), ")")), 
             icon=icon("users"), color="yellow"
         )
     })
@@ -119,7 +127,7 @@ shinyServer(function(input, output) {
             sum(datasetInput()$Hospitalized == "YES", na.rm=TRUE), 
             HTML(paste0("Total Hospitalized <br> (Compare to yesterday: ", 
                         comp(sum(datasetInput()$Hospitalized == "YES", na.rm=TRUE),
-                             sum(lastInput()$Hospitalized == "YES", na.rm=TRUE)), ")")), 
+                             lastInput_hosp()), ")")), 
             icon=icon("hospital"), color="purple"
         )
     })
@@ -129,7 +137,7 @@ shinyServer(function(input, output) {
             sum(datasetInput()$Died == "Yes", na.rm=TRUE),
             HTML(paste0("Total Deaths <br> (Compare to yesterday: ", 
                         comp(sum(datasetInput()$Died == "Yes", na.rm=TRUE),
-                             sum(lastInput()$Died == "Yes", na.rm=TRUE)), ")")), 
+                             lastInput_died()), ")")), 
             icon=icon("sad-tear"), color = "red"
         )
     })

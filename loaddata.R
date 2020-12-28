@@ -12,9 +12,11 @@ caseline <- rbindlist(caseline)
 lastcaseline <- readRDS("caseline.rds")
 
 if (nrow(caseline) > nrow(lastcaseline)) {
-    lastupdate <- vector(mode="list", length=2)
+    lastupdate <- vector(mode="list", length=4)
     lastupdate[[1]] <- Sys.Date()
-    lastupdate[[2]] <- lastcaseline
+    lastupdate[[2]] <- lastcaseline[[2]] %>% group_by(County) %>% summarize(n=n())
+    lastupdate[[3]] <- lastcaseline[[2]] %>% subset(Died == "Yes") %>% group_by(County) %>% summarize(n=n())
+    lastupdate[[4]] <- lastcaseline[[2]] %>% subset(Hospitalized == "YES") %>% group_by(County) %>% summarize(n=n())
     
     saveRDS(caseline, "caseline.rds")
     saveRDS(lastupdate, "lastupdate.rds")
