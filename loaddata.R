@@ -1,6 +1,7 @@
 
 library(httr)
 library(data.table)
+library(tidyverse)
 
 
 req <- httr::GET(url = "https://opendata.arcgis.com/datasets/37abda537d17458bae6677b8ab75fcb9_0.geojson")
