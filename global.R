@@ -25,15 +25,15 @@ comp <- function(newdat, olddat) {
 
 # preprocessing
 #caseline <- caseline[, -c(1, 4, 6, 8, 12, 14)]
-#caseline <- caseline[, -c(3, 5, 7, 11, 13, 16)]
+caseline <- caseline[, -c(3, 5, 7, 11, 13, 16)]
 caseline$Age <- as.numeric(caseline$Age)
 caseline$EDvisit <- ifelse(is.na(caseline$EDvisit), "UNKNOWN", caseline$EDvisit)
 caseline$Hospitalized <- ifelse(caseline$Hospitalized == "NA", "UNKNOWN", caseline$Hospitalized)
 caseline$Died <- ifelse(caseline$Died == "NA", "NO", caseline$Died)
 caseline$Contact <- ifelse(caseline$Contact == "NA", "UNKNOWN", caseline$Contact)
 caseline$Contact <- ifelse(caseline$Contact == "Yes", "YES", caseline$Contact)
-caseline$EventDate <- as.Date(caseline$EventDate,"%Y/%m/%d")
-caseline$ChartDate <- as.Date(caseline$ChartDate,"%Y/%m/%d")
+caseline$EventDate <- as.Date(caseline$EventDate,"%Y-%m-%d")
+caseline$ChartDate <- as.Date(caseline$ChartDate,"%Y-%m-%d")
 
 caseline <- caseline[order(caseline[, c("ChartDate", "EventDate")], decreasing=TRUE), ]
 row.names(caseline) <- NULL
